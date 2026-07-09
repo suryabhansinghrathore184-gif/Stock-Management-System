@@ -98,6 +98,19 @@
     <Content Include="customerdetails.aspx" />
     <Content Include="editsupplier.aspx" />
     <Content Include="supplierdetails.aspx" />
+    <Content Include="c_dashboard.aspx" />
+    <Content Include="c_wishlist.aspx" />
+    <Content Include="c_notifications.aspx" />
+    <Content Include="c_support.aspx" />
+    <Content Include="c_feedback.aspx" />
+    <Content Include="c_addressbook.aspx" />
+    <Content Include="s_dashboard.aspx" />
+    <Content Include="s_purchaseorders.aspx" />
+    <Content Include="s_products.aspx" />
+    <Content Include="s_payments.aspx" />
+    <Content Include="s_deliveryschedule.aspx" />
+    <Content Include="s_performance.aspx" />
+    <Content Include="s_documents.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataCon.cs" />
@@ -318,6 +331,97 @@
     </Compile>
     <Compile Include="supplierdetails.aspx.designer.cs">
       <DependentUpon>supplierdetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_dashboard.aspx.cs">
+      <DependentUpon>c_dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_dashboard.aspx.designer.cs">
+      <DependentUpon>c_dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_wishlist.aspx.cs">
+      <DependentUpon>c_wishlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_wishlist.aspx.designer.cs">
+      <DependentUpon>c_wishlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_notifications.aspx.cs">
+      <DependentUpon>c_notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_notifications.aspx.designer.cs">
+      <DependentUpon>c_notifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_support.aspx.cs">
+      <DependentUpon>c_support.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_support.aspx.designer.cs">
+      <DependentUpon>c_support.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_feedback.aspx.cs">
+      <DependentUpon>c_feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_feedback.aspx.designer.cs">
+      <DependentUpon>c_feedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="c_addressbook.aspx.cs">
+      <DependentUpon>c_addressbook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="c_addressbook.aspx.designer.cs">
+      <DependentUpon>c_addressbook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_dashboard.aspx.cs">
+      <DependentUpon>s_dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_dashboard.aspx.designer.cs">
+      <DependentUpon>s_dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_purchaseorders.aspx.cs">
+      <DependentUpon>s_purchaseorders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_purchaseorders.aspx.designer.cs">
+      <DependentUpon>s_purchaseorders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_products.aspx.cs">
+      <DependentUpon>s_products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_products.aspx.designer.cs">
+      <DependentUpon>s_products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_payments.aspx.cs">
+      <DependentUpon>s_payments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_payments.aspx.designer.cs">
+      <DependentUpon>s_payments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_deliveryschedule.aspx.cs">
+      <DependentUpon>s_deliveryschedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_deliveryschedule.aspx.designer.cs">
+      <DependentUpon>s_deliveryschedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_performance.aspx.cs">
+      <DependentUpon>s_performance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_performance.aspx.designer.cs">
+      <DependentUpon>s_performance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="s_documents.aspx.cs">
+      <DependentUpon>s_documents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="s_documents.aspx.designer.cs">
+      <DependentUpon>s_documents.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

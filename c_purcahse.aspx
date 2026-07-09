@@ -62,8 +62,13 @@
 
         <!-- Orders Table Grid -->
         <div class="card orders-card">
-            <div class="card-header bg-white border-0 pt-4 pb-0">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex flex-wrap align-items-center justify-content-between gap-3">
                 <h5 class="fw-bold m-0"><i class="fa-solid fa-receipt me-2 text-primary"></i>All Orders Log</h5>
+                <div class="d-flex align-items-center gap-2">
+                    <asp:TextBox ID="TxtSearch" runat="server" CssClass="form-control form-control-sm" Placeholder="Invoice or Product..."></asp:TextBox>
+                    <asp:Button ID="BtnSearch" runat="server" CssClass="btn btn-sm btn-primary" Text="Search" OnClick="BtnSearch_Click" />
+                    <asp:Button ID="BtnClear" runat="server" CssClass="btn btn-sm btn-secondary" Text="Clear" OnClick="BtnClear_Click" />
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -71,7 +76,7 @@
                         CssClass="table table-hover table-premium align-middle mb-0" GridLines="None"
                         AllowPaging="True" PageSize="10" OnPageIndexChanging="GridView1_PageIndexChanging">
                         <Columns>
-                            <asp:BoundField DataField="CustomerId" HeaderText="Account ID" />
+                            <asp:BoundField DataField="InvoiceNumber" HeaderText="Invoice No" />
                             <asp:BoundField DataField="ProductName" HeaderText="Item Name" />
                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                             
@@ -88,12 +93,21 @@
                                     <%# Convert.ToDateTime(Eval("SaleDate")).ToString("dd-MM-yyyy HH:mm") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
+
+                            <%-- Actions --%>
+                            <asp:TemplateField HeaderText="Actions">
+                                <ItemTemplate>
+                                    <a href='print_invoice.aspx?invoice=<%# Eval("InvoiceNumber") %>' target="_blank" class="btn btn-sm btn-outline-primary py-1 px-2.5">
+                                        <i class="fa-solid fa-print me-1.5"></i>Print / PDF
+                                    </a>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                         <PagerStyle CssClass="pagination-container" />
                         <EmptyDataTemplate>
                             <div class="text-center py-4 text-muted">
                                 <i class="fa-solid fa-receipt fs-2 mb-2 d-block"></i>
-                                You have not placed any orders yet.
+                                No matching orders found.
                             </div>
                         </EmptyDataTemplate>
                     </asp:GridView>

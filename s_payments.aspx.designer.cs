@@ -1,96 +1,114 @@
 namespace StockMangementSystem {
     
     
-    public partial class WebForm12 {
+    public partial class s_payments {
         
         /// <summary>
-        /// LatestOrderPanel control.
+        /// LblTotalPaid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel LatestOrderPanel;
+        protected global::System.Web.UI.WebControls.Label LblTotalPaid;
         
         /// <summary>
-        /// Label1 control.
+        /// LblTotalPending control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label LblTotalPending;
         
         /// <summary>
-        /// Label2 control.
+        /// GvPayments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.GridView GvPayments;
         
         /// <summary>
-        /// Label3 control.
+        /// PanelReceiptOverlay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Panel PanelReceiptOverlay;
         
         /// <summary>
-        /// Label4 control.
+        /// BtnCloseReceipt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Button BtnCloseReceipt;
         
         /// <summary>
-        /// Label6 control.
+        /// PrintReceiptDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label PrintReceiptDate;
         
         /// <summary>
-        /// TxtSearch control.
+        /// PrintReceiptSupp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtSearch;
+        protected global::System.Web.UI.WebControls.Label PrintReceiptSupp;
         
         /// <summary>
-        /// BtnSearch control.
+        /// PrintReceiptProd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSearch;
+        protected global::System.Web.UI.WebControls.Label PrintReceiptProd;
         
         /// <summary>
-        /// BtnClear control.
+        /// PrintReceiptQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnClear;
+        protected global::System.Web.UI.WebControls.Label PrintReceiptQty;
         
         /// <summary>
-        /// GridView1 control.
+        /// PrintReceiptTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label PrintReceiptTotal;
+        
+        /// <summary>
+        /// BtnCancelReceipt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnCancelReceipt;
+        
+        /// <summary>
+        /// PrintReceiptPoId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PrintReceiptPoId;
     }
 }

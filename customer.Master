@@ -114,10 +114,28 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="sidebar-item">
+                    <a href="c_dashboard.aspx"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+                </li>
+                <li class="sidebar-item">
                     <a href="c_profile.aspx"><i class="fa-solid fa-user-gear"></i><span>My Profile</span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="c_purcahse.aspx"><i class="fa-solid fa-receipt"></i><span>My Orders / Purchases</span></a>
+                    <a href="c_purcahse.aspx"><i class="fa-solid fa-receipt"></i><span>Order History</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="c_wishlist.aspx"><i class="fa-solid fa-heart"></i><span>Wishlist</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="c_addressbook.aspx"><i class="fa-solid fa-address-book"></i><span>Address Book</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="c_feedback.aspx"><i class="fa-solid fa-star"></i><span>Feedback & Reviews</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="c_notifications.aspx"><i class="fa-solid fa-bell"></i><span>Notifications</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="c_support.aspx"><i class="fa-solid fa-circle-question"></i><span>Customer Support</span></a>
                 </li>
                 <li class="sidebar-item mt-4">
                     <a href="c_logout.aspx" class="text-danger"><i class="fa-solid fa-right-from-bracket text-danger"></i><span>Logout</span></a>

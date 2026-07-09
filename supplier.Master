@@ -114,10 +114,31 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="sidebar-item">
+                    <a href="s_dashboard.aspx"><i class="fa-solid fa-chart-line"></i><span>Dashboard</span></a>
+                </li>
+                <li class="sidebar-item">
                     <a href="s_profile.aspx"><i class="fa-solid fa-id-card"></i><span>My Profile</span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="s_sell.aspx"><i class="fa-solid fa-clipboard-list"></i><span>My Supply / Sales</span></a>
+                    <a href="s_purchaseorders.aspx"><i class="fa-solid fa-file-invoice"></i><span>Purchase Orders</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_products.aspx"><i class="fa-solid fa-boxes-packing"></i><span>My Products</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_sell.aspx"><i class="fa-solid fa-clipboard-list"></i><span>Supply Registry</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_payments.aspx"><i class="fa-solid fa-wallet"></i><span>Payment History</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_deliveryschedule.aspx"><i class="fa-solid fa-calendar-days"></i><span>Delivery Schedule</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_performance.aspx"><i class="fa-solid fa-gauge-high"></i><span>My Performance</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="s_documents.aspx"><i class="fa-solid fa-folder-open"></i><span>Business Documents</span></a>
                 </li>
                 <li class="sidebar-item mt-4">
                     <a href="s_logout.aspx" class="text-danger"><i class="fa-solid fa-right-from-bracket text-danger"></i><span>Logout</span></a>

@@ -199,4 +199,133 @@ BEGIN
 END
 GO
 
+-- 7. NEW MODULES SCHEMA (Wishlist, Notifications, Tickets, Reviews, Addresses, Documents)
+-- Create Wishlist Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CustomerWishlist')
+BEGIN
+    CREATE TABLE CustomerWishlist (
+        CustomerId VARCHAR(50) NOT NULL,
+        ProductCode VARCHAR(50) NOT NULL,
+        AddedDate DATETIME DEFAULT GETDATE(),
+        PRIMARY KEY (CustomerId, ProductCode),
+        CONSTRAINT FK_Wishlist_Customer FOREIGN KEY (CustomerId) REFERENCES NewCustomer(Id) ON DELETE CASCADE,
+        CONSTRAINT FK_Wishlist_Products FOREIGN KEY (ProductCode) REFERENCES Products(ProductCode) ON DELETE CASCADE
+    );
+END
+GO
+
+-- Create Notifications Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CustomerNotifications')
+BEGIN
+    CREATE TABLE CustomerNotifications (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        UserId VARCHAR(50) NOT NULL,
+        UserRole VARCHAR(20) NOT NULL, -- 'Customer' or 'Supplier'
+        Title VARCHAR(100) NOT NULL,
+        Message VARCHAR(500) NOT NULL,
+        IsRead BIT DEFAULT 0,
+        CreatedDate DATETIME DEFAULT GETDATE()
+    );
+END
+GO
+
+-- Create Support Tickets Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'SupportTickets')
+BEGIN
+    CREATE TABLE SupportTickets (
+        TicketId INT IDENTITY(1,1) PRIMARY KEY,
+        UserId VARCHAR(50) NOT NULL,
+        UserRole VARCHAR(20) NOT NULL,
+        Subject VARCHAR(100) NOT NULL,
+        Category VARCHAR(50) NOT NULL,
+        Status VARCHAR(20) DEFAULT 'Open', -- 'Open', 'Pending', 'Resolved'
+        CreatedDate DATETIME DEFAULT GETDATE(),
+        UpdatedDate DATETIME DEFAULT GETDATE()
+    );
+END
+GO
+
+-- Create Ticket Replies Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'TicketReplies')
+BEGIN
+    CREATE TABLE TicketReplies (
+        ReplyId INT IDENTITY(1,1) PRIMARY KEY,
+        TicketId INT NOT NULL,
+        SenderId VARCHAR(50) NOT NULL,
+        Message VARCHAR(1000) NOT NULL,
+        CreatedDate DATETIME DEFAULT GETDATE(),
+        CONSTRAINT FK_Replies_Tickets FOREIGN KEY (TicketId) REFERENCES SupportTickets(TicketId) ON DELETE CASCADE
+    );
+END
+GO
+
+-- Create Product Reviews Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ProductReviews')
+BEGIN
+    CREATE TABLE ProductReviews (
+        ReviewId INT IDENTITY(1,1) PRIMARY KEY,
+        CustomerId VARCHAR(50) NOT NULL,
+        ProductCode VARCHAR(50) NOT NULL,
+        Rating INT CHECK (Rating BETWEEN 1 AND 5),
+        ReviewText VARCHAR(1000),
+        CreatedDate DATETIME DEFAULT GETDATE(),
+        CONSTRAINT FK_Reviews_Customer FOREIGN KEY (CustomerId) REFERENCES NewCustomer(Id) ON DELETE CASCADE,
+        CONSTRAINT FK_Reviews_Products FOREIGN KEY (ProductCode) REFERENCES Products(ProductCode) ON DELETE CASCADE
+    );
+END
+GO
+
+-- Create Customer Addresses Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CustomerAddresses')
+BEGIN
+    CREATE TABLE CustomerAddresses (
+        AddressId INT IDENTITY(1,1) PRIMARY KEY,
+        CustomerId VARCHAR(50) NOT NULL,
+        Name VARCHAR(100) NOT NULL,
+        Phone VARCHAR(20) NOT NULL,
+        AddressLine VARCHAR(200) NOT NULL,
+        City VARCHAR(50) NOT NULL,
+        State VARCHAR(50) NOT NULL,
+        PostalCode VARCHAR(20) NOT NULL,
+        Country VARCHAR(50) NOT NULL,
+        IsDefaultBilling BIT DEFAULT 0,
+        IsDefaultShipping BIT DEFAULT 0,
+        CONSTRAINT FK_Addresses_Customer FOREIGN KEY (CustomerId) REFERENCES NewCustomer(Id) ON DELETE CASCADE
+    );
+END
+GO
+
+-- Create Supplier Documents Table
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'SupplierDocuments')
+BEGIN
+    CREATE TABLE SupplierDocuments (
+        DocId INT IDENTITY(1,1) PRIMARY KEY,
+        SupplierId VARCHAR(50) NOT NULL,
+        DocumentType VARCHAR(50) NOT NULL, -- 'GST', 'PAN', 'License'
+        FilePath VARCHAR(200) NOT NULL,
+        UploadedDate DATETIME DEFAULT GETDATE(),
+        CONSTRAINT FK_Documents_Supplier FOREIGN KEY (SupplierId) REFERENCES NewSupplier(supplierid) ON DELETE CASCADE
+    );
+END
+GO
+
+-- Alter NewSupplier Table to add bank details
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('NewSupplier') AND name = 'bank_account')
+BEGIN
+    ALTER TABLE NewSupplier ADD bank_account VARCHAR(50) NULL;
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('NewSupplier') AND name = 'bank_name')
+BEGIN
+    ALTER TABLE NewSupplier ADD bank_name VARCHAR(100) NULL;
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('NewSupplier') AND name = 'bank_ifsc')
+BEGIN
+    ALTER TABLE NewSupplier ADD bank_ifsc VARCHAR(20) NULL;
+END
+GO
+
 PRINT 'Database layout successfully upgraded with constraints, tables, indexes, and seed data!';
