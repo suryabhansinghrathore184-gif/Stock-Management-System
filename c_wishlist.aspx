@@ -31,14 +31,12 @@
                             <asp:BoundField DataField="ProductCode" HeaderText="Code" />
                             <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                             
-                            <!-- Price -->
                             <asp:TemplateField HeaderText="Price ($)">
                                 <ItemTemplate>
                                     <%# Convert.ToDecimal(Eval("SellingPrice")).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Availability -->
                             <asp:TemplateField HeaderText="Availability">
                                 <ItemTemplate>
                                     <span class='badge <%# Convert.ToInt32(Eval("Quantity")) > 0 ? "bg-success" : "bg-danger" %>'>
@@ -47,7 +45,6 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Actions -->
                             <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="BtnBuy" runat="server" CommandName="BuyItem" CommandArgument='<%# Eval("ProductCode") %>' 
@@ -87,21 +84,18 @@
                             <asp:BoundField DataField="ProductCode" HeaderText="Code" />
                             <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
                             
-                            <!-- Price -->
                             <asp:TemplateField HeaderText="Price ($)">
                                 <ItemTemplate>
                                     <%# Convert.ToDecimal(Eval("SellingPrice")).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Stock -->
                             <asp:TemplateField HeaderText="Stock Qty">
                                 <ItemTemplate>
                                     <%# Eval("Quantity") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Actions -->
                             <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="BtnAddWish" runat="server" CommandName="AddWish" CommandArgument='<%# Eval("ProductCode") %>' 

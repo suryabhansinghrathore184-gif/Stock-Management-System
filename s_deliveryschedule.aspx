@@ -33,14 +33,12 @@
                             <asp:BoundField DataField="ProductName" HeaderText="Item Name" ReadOnly="True" />
                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" ReadOnly="True" />
                             
-                            <!-- Date -->
                             <asp:TemplateField HeaderText="Scheduled Date">
                                 <ItemTemplate>
                                     <%# Convert.ToDateTime(Eval("PurchaseDate")).ToString("dd-MM-yyyy") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Status Dropdown Edit -->
                             <asp:TemplateField HeaderText="Delivery Status">
                                 <ItemTemplate>
                                     <span class='badge <%# Eval("DeliveryStatus").ToString() == "Delivered" ? "bg-success" : (Eval("DeliveryStatus").ToString() == "In Transit" ? "bg-info" : "bg-warning") %>'>
@@ -56,7 +54,6 @@
                                 </EditItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Actions -->
                             <asp:CommandField ShowEditButton="True" ControlStyle-CssClass="btn btn-xs btn-outline-secondary me-1" ButtonType="Button" />
                         </Columns>
                         <PagerStyle CssClass="pagination-container" />

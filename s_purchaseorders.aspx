@@ -53,21 +53,18 @@
                             <asp:BoundField DataField="ProductName" HeaderText="Product" />
                             <asp:BoundField DataField="Quantity" HeaderText="Qty" />
                             
-                            <!-- Unit Price -->
                             <asp:TemplateField HeaderText="Unit Price ($)">
                                 <ItemTemplate>
                                     <%# Convert.ToDecimal(Eval("PurchasePrice")).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Total -->
                             <asp:TemplateField HeaderText="Total Price ($)">
                                 <ItemTemplate>
                                     <%# (Convert.ToDecimal(Eval("PurchasePrice")) * Convert.ToInt32(Eval("Quantity"))).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Status -->
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
                                     <span class='badge <%# Eval("DeliveryStatus").ToString() == "Delivered" ? "bg-success" : (Eval("DeliveryStatus").ToString() == "In Transit" ? "bg-info" : "bg-warning") %>'>
@@ -76,7 +73,6 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Actions -->
                             <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="BtnPrint" runat="server" CommandName="PrintPO" CommandArgument='<%# Eval("PurchaseId") %>' 

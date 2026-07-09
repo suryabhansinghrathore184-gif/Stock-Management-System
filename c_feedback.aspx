@@ -61,7 +61,6 @@
                                 <asp:BoundField DataField="ReviewId" HeaderText="ID" ReadOnly="True" />
                                 <asp:BoundField DataField="ProductName" HeaderText="Product" ReadOnly="True" />
                                 
-                                <!-- Rating Edit -->
                                 <asp:TemplateField HeaderText="Rating">
                                     <ItemTemplate>
                                         <span class="star-rating">
@@ -79,7 +78,6 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
-                                <!-- Comment Edit -->
                                 <asp:TemplateField HeaderText="Review Comment">
                                     <ItemTemplate>
                                         <%# Eval("ReviewText") %>
@@ -89,7 +87,6 @@
                                     </EditItemTemplate>
                                 </asp:TemplateField>
 
-                                <!-- Edit & Delete Commands -->
                                 <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" 
                                     ControlStyle-CssClass="btn btn-xs btn-outline-secondary me-1"
                                     ButtonType="Button" />
