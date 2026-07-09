@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace StockMangementSystem
 {
@@ -17,6 +18,14 @@ namespace StockMangementSystem
                 return;
             }
 
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
+        }
+
+        private void BindGrid()
+        {
             string sid = Session["sid"].ToString();
 
             try
@@ -36,6 +45,7 @@ namespace StockMangementSystem
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
+                    LatestSupplyPanel.Visible = true;
                     Label1.Text = ds.Tables[0].Rows[0]["SupplierId"].ToString();
                     Label2.Text = ds.Tables[0].Rows[0]["ProductName"].ToString();
                     Label3.Text = ds.Tables[0].Rows[0]["Quantity"].ToString();
@@ -51,6 +61,10 @@ namespace StockMangementSystem
                         Label5.Text = ds.Tables[0].Rows[0]["PurchaseDate"].ToString();
                     }
                 }
+                else
+                {
+                    LatestSupplyPanel.Visible = false;
+                }
 
                 GridView1.DataSource = ds.Tables[0];
                 GridView1.DataBind();
@@ -59,6 +73,12 @@ namespace StockMangementSystem
             {
                 Response.Write("<script>alert('Error loading supplies: " + ex.Message + "')</script>");
             }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindGrid();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
