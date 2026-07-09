@@ -64,7 +64,7 @@
                                 <asp:TemplateField HeaderText="Rating">
                                     <ItemTemplate>
                                         <span class="star-rating">
-                                            <%# new string('★', Convert.ToInt32(Eval("Rating"))) + new string('☆', 5 - Convert.ToInt32(Eval("Rating"))) %>
+                                            <%# GetStars(Eval("Rating")) %>
                                         </span>
                                     </ItemTemplate>
                                     <EditItemTemplate>

@@ -183,6 +183,16 @@ namespace StockMangementSystem
             }
         }
 
+        public string GetStars(object ratingObj)
+        {
+            if (ratingObj == null || ratingObj == DBNull.Value) return "";
+            int rating = Convert.ToInt32(ratingObj);
+            string stars = "";
+            for (int i = 0; i < rating; i++) stars += "★";
+            for (int i = rating; i < 5; i++) stars += "☆";
+            return stars;
+        }
+
         private void ShowAlert(string msg)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + msg.Replace("'", "\\'") + "');", true);
