@@ -75,21 +75,21 @@
                             <asp:BoundField DataField="ProductName" HeaderText="Item Supplied" />
                             <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
                             
-                            <!-- Unit Price -->
+                            <%-- Unit Price --%>
                             <asp:TemplateField HeaderText="Unit Price ($)">
                                 <ItemTemplate>
                                     <%# Convert.ToDecimal(Eval("PurchasePrice")).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Total Value -->
+                            <%-- Total Value --%>
                             <asp:TemplateField HeaderText="Total Cost ($)">
                                 <ItemTemplate>
                                     <%# (Convert.ToDecimal(Eval("PurchasePrice")) * Convert.ToInt32(Eval("Quantity"))).ToString("N2") %>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <!-- Date -->
+                            <%-- Date --%>
                             <asp:TemplateField HeaderText="Supply Date">
                                 <ItemTemplate>
                                     <%# Convert.ToDateTime(Eval("PurchaseDate")).ToString("dd-MM-yyyy HH:mm") %>
