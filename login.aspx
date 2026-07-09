@@ -170,8 +170,8 @@
                 <span><i class="fa-solid fa-user-tie text-success me-2"></i><strong>Customer:</strong> 101</span>
                 <span class="badge bg-dark-subtle text-white-50 border border-secondary border-opacity-50">PW: 123</span>
             </div>
-            <div class="credential-badge" onclick="quickFill('101', '123')">
-                <span><i class="fa-solid fa-truck-field text-warning me-2"></i><strong>Supplier:</strong> 101</span>
+            <div class="credential-badge" onclick="quickFill('102', '123')">
+                <span><i class="fa-solid fa-truck-field text-warning me-2"></i><strong>Supplier:</strong> 102</span>
                 <span class="badge bg-dark-subtle text-white-50 border border-secondary border-opacity-50">PW: 123</span>
             </div>
         </div>
