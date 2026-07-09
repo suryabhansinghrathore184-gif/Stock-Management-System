@@ -1,0 +1,376 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="StockMangementSystem.Site1" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Management System - Admin Panel</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-sidebar: #0f172a;
+            --bg-body: #f8fafc;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--bg-sidebar);
+            color: #fff;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-brand {
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        .sidebar-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-item a:hover, .sidebar-item.active a {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: var(--primary-color);
+        }
+
+        .sidebar-item a i {
+            font-size: 1.1rem;
+            width: 20px;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            margin-left: 260px;
+            height: 70px;
+            background-color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Main Content Container */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Breadcrumb Custom */
+        .breadcrumb-container {
+            font-size: 0.9rem;
+        }
+        .breadcrumb-container a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .breadcrumb-container span {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .profile-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+
+        /* Premium Card Styles */
+        .card-premium {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Loading Spinner */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(79, 70, 229, 0.1);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tables Premium Design */
+        .table-premium th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .table-premium td {
+            vertical-align: middle;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                margin-left: -260px;
+            }
+            .sidebar.active {
+                margin-left: 0;
+            }
+            .top-navbar, .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <!-- Spinner -->
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <form id="form1" runat="server">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-boxes-stacked text-primary"></i>
+                <span>STOCK FLOW</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <a href="dashboard.aspx"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="categories.aspx"><i class="fa-solid fa-tags"></i><span>Categories</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="products.aspx"><i class="fa-solid fa-box"></i><span>Products</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="newsupplier.aspx"><i class="fa-solid fa-truck-field"></i><span>Add Supplier</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="supplierlist.aspx"><i class="fa-solid fa-address-book"></i><span>Supplier List</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="newcustomer.aspx"><i class="fa-solid fa-user-plus"></i><span>Add Customer</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="customerlist.aspx"><i class="fa-solid fa-users"></i><span>Customer List</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="purchase.aspx"><i class="fa-solid fa-cart-shopping"></i><span>Purchases</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="sell.aspx"><i class="fa-solid fa-hand-holding-dollar"></i><span>Sales / Sell</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="stock.aspx"><i class="fa-solid fa-warehouse"></i><span>Inventory Stock</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="reports.aspx"><i class="fa-solid fa-file-invoice-dollar"></i><span>Financial Reports</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="view.aspx"><i class="fa-solid fa-magnifying-glass"></i><span>Transaction History</span></a>
+                </li>
+                <li class="sidebar-item mt-4">
+                    <a href="logout.aspx" class="text-danger"><i class="fa-solid fa-right-from-bracket text-danger"></i><span>Logout</span></a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark d-lg-none" type="button" id="sidebar-toggle">
+                        <i class="fa-solid fa-bars fs-4"></i>
+                    </button>
+                    <div class="breadcrumb-container d-none d-sm-block">
+                        <a href="dashboard.aspx">Home</a> <i class="fa-solid fa-chevron-right mx-2 text-muted" style="font-size: 0.75rem;"></i>
+                        <span>Admin Portal</span>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fw-semibold text-muted d-none d-sm-inline">Welcome, Admin</span>
+                    <div class="dropdown">
+                        <div class="profile-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Admin avatar" class="profile-img" />
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><a class="dropdown-item" href="dashboard.aspx"><i class="fa-solid fa-house me-2"></i>Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="logout.aspx"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
+        </div>
+    </form>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Toggle Sidebar on mobile
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+        }
+
+        // Hide loader once page is loaded
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        // Set Active Menu Item based on URL
+        const currentPath = window.location.pathname.split("/").pop();
+        const menuLinks = document.querySelectorAll('.sidebar-item a');
+        menuLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPath) {
+                link.parentElement.classList.add('active');
+                
+                // Update breadcrumb text
+                const breadcrumbSpan = document.querySelector('.breadcrumb-container span');
+                if (breadcrumbSpan && link.querySelector('span')) {
+                    breadcrumbSpan.textContent = link.querySelector('span').textContent;
+                }
+            }
+        });
+
+        // Delete Alert Helper
+        function confirmDelete(title, text, confirmBtnText, callback) {
+            Swal.fire({
+                title: title || 'Are you sure?',
+                text: text || "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#4f46e5',
+                cancelButtonColor: '#ef4444',
+                confirmButtonText: confirmBtnText || 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    callback();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
