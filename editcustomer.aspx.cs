@@ -58,7 +58,7 @@ namespace StockMangementSystem
                     
                     TxtPassword.Text = row["password"].ToString();
 
-                    string photo = row["photolink"].ToString();
+                    string photo = row["customerphoto"].ToString();
                     if (!string.IsNullOrEmpty(photo))
                     {
                         ImgPreview.ImageUrl = "/Links/" + photo;
@@ -166,7 +166,7 @@ namespace StockMangementSystem
                                        SET name = @Name, number = @Phone, email = @Email, address = @Address, city = @City, 
                                            gstnumber = @Gstin, customertype = @Type, creditlimit = @CreditLimit, status = @Status, password = @Password,
                                            altmobile = @AltMobile, companyname = @CompanyName, state = @State, postalcode = @PostalCode, country = @Country,
-                                           photolink = CASE WHEN @Photo <> '' THEN @Photo ELSE photolink END
+                                           customerphoto = CASE WHEN @Photo <> '' THEN @Photo ELSE customerphoto END
                                        WHERE Id = @Id";
 
                 SqlParameter[] parameters = new SqlParameter[]

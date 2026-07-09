@@ -101,7 +101,7 @@
                             <!-- Avatar -->
                             <asp:TemplateField HeaderText="Photo">
                                 <ItemTemplate>
-                                    <img src='<%# string.IsNullOrEmpty(Eval("photolink").ToString()) ? "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" : "/Links/" + Eval("photolink") %>' class="customer-avatar shadow-sm border" alt="Avatar" />
+                                    <img src='<%# string.IsNullOrEmpty(Eval("customerphoto").ToString()) ? "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" : "/Links/" + Eval("customerphoto") %>' class="customer-avatar shadow-sm border" alt="Avatar" />
                                 </ItemTemplate>
                             </asp:TemplateField>
 

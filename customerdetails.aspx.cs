@@ -63,7 +63,7 @@ namespace StockMangementSystem
                         LblCreatedDate.Text = "-";
                     }
 
-                    string photo = row["photolink"].ToString();
+                    string photo = row["customerphoto"].ToString();
                     if (!string.IsNullOrEmpty(photo))
                     {
                         ImgPhoto.ImageUrl = "/Links/" + photo;

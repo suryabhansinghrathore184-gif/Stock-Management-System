@@ -29,18 +29,20 @@ namespace StockMangementSystem
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     DataRow row = ds.Tables[0].Rows[0];
-                    Image1.ImageUrl = string.IsNullOrEmpty(row[0].ToString()) ? "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" : "/Links/" + row[0].ToString();
+                    
+                    string photo = row["supplierphoto"].ToString();
+                    Image1.ImageUrl = string.IsNullOrEmpty(photo) ? "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" : "/Links/" + photo;
 
-                    Label1.Text = row[1].ToString();
-                    Label2.Text = row[2].ToString();
-                    Label3.Text = row[3].ToString();
-                    Label4.Text = row[4].ToString();
-                    Label5.Text = row[5].ToString();
-                    Label6.Text = row[6].ToString();
-                    Label7.Text = row[7].ToString();
-                    Label8.Text = row[8].ToString();
-                    Label9.Text = row[9].ToString();
-                    Label10.Text = row[10].ToString();
+                    Label1.Text = row["supplierid"].ToString();
+                    Label2.Text = row["suppliername"].ToString();
+                    Label3.Text = row["companyname"].ToString();
+                    Label4.Text = string.IsNullOrEmpty(row["contactperson"].ToString()) ? "-" : row["contactperson"].ToString();
+                    Label5.Text = row["phonenumber"].ToString();
+                    Label6.Text = row["email"].ToString();
+                    Label7.Text = row["address"].ToString();
+                    Label8.Text = row["city"].ToString();
+                    Label9.Text = string.IsNullOrEmpty(row["gstnumber"].ToString()) ? "N/A" : row["gstnumber"].ToString();
+                    Label10.Text = row["supplierstatus"].ToString();
                 }
             }
             catch (Exception ex)

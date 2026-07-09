@@ -1,85 +1,108 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/customer.Master" AutoEventWireup="true" CodeBehind="c_profile.aspx.cs" Inherits="StockMangementSystem.WebForm15" %>
+<%@ Page Title="My Profile" Language="C#" MasterPageFile="~/customer.Master" AutoEventWireup="true" CodeBehind="c_profile.aspx.cs" Inherits="StockMangementSystem.WebForm15" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
+    <style>
+        .profile-card {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background: #fff;
         }
-        .auto-style2 {
-            width: 706px;
-            text-align: center;
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #e2e8f0;
         }
-        .auto-style3 {
-            text-align: center;
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #64748b;
+            display: block;
         }
-        </style>
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #0f172a;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="auto-style1">
-        <tr>
-            <td class="auto-style2">Customer Photo</td>
-            <td class="auto-style3">
-                <asp:Image ID="Image1" runat="server" Height="98px" Width="85px" />
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Customer ID</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Customer Name</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Customer number</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Email ID</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Address</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">City</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">GST Number</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Customer Type</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Credit Limit</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Status</td>
-            <td class="auto-style3">
-                <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-        </table>
+    <div class="container-fluid py-4">
+        <!-- Header -->
+        <div class="mb-4">
+            <h3 class="fw-bold mb-0 text-dark">My Profile</h3>
+            <p class="text-muted small">Manage your account information and preferences</p>
+        </div>
+
+        <div class="row">
+            <!-- Left Profile Card -->
+            <div class="col-lg-4 mb-4">
+                <div class="card profile-card text-center p-4">
+                    <div class="card-body">
+                        <asp:Image ID="Image1" runat="server" CssClass="profile-avatar shadow-sm mb-3" />
+                        <h4 class="fw-bold text-dark mb-1"><asp:Label ID="Label2" runat="server"></asp:Label></h4>
+                        <span class="badge bg-primary rounded-pill px-3 py-1.5 mb-2"><asp:Label ID="Label8" runat="server"></asp:Label></span>
+                        <div class="d-block mt-2">
+                            <span class='badge bg-success rounded-pill px-3 py-1.5'>
+                                <asp:Label ID="Label10" runat="server"></asp:Label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Profile Details -->
+            <div class="col-lg-8 mb-4">
+                <div class="card profile-card p-4">
+                    <div class="card-header bg-white border-0 p-0 pb-3 mb-3 border-bottom">
+                        <h5 class="fw-bold m-0 text-primary"><i class="fa-solid fa-address-card me-2"></i>Account Information</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="info-label">Customer ID</span>
+                                <span class="info-value"><asp:Label ID="Label1" runat="server"></asp:Label></span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="info-label">Mobile Number</span>
+                                <span class="info-value"><asp:Label ID="Label3" runat="server"></asp:Label></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="info-label">Email Address</span>
+                                <span class="info-value"><asp:Label ID="Label4" runat="server"></asp:Label></span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="info-label">GSTIN / Tax ID</span>
+                                <span class="info-value"><asp:Label ID="Label7" runat="server"></asp:Label></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="info-label">Credit Limit ($)</span>
+                                <span class="info-value text-success fw-bold"><asp:Label ID="Label9" runat="server"></asp:Label></span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="info-label">City</span>
+                                <span class="info-value"><asp:Label ID="Label6" runat="server"></asp:Label></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="info-label">Billing Address</span>
+                                <span class="info-value"><asp:Label ID="Label5" runat="server"></asp:Label></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

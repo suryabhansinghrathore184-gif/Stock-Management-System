@@ -114,7 +114,7 @@ namespace StockMangementSystem
                 }
 
                 // Insert query with new columns
-                string insertQuery = @"INSERT INTO NewCustomer (photolink, Id, name, number, email, address, city, gstnumber, customertype, creditlimit, status, password, altmobile, companyname, state, postalcode, country, createddate)
+                string insertQuery = @"INSERT INTO NewCustomer (customerphoto, Id, name, number, email, address, city, gstnumber, customertype, creditlimit, status, password, altmobile, companyname, state, postalcode, country, createddate)
                                        VALUES (@Photo, @Id, @Name, @Phone, @Email, @Address, @City, @Gstin, @Type, @CreditLimit, @Status, @Password, @AltMobile, @CompanyName, @State, @PostalCode, @Country, GETDATE())";
 
                 SqlParameter[] parameters = new SqlParameter[]

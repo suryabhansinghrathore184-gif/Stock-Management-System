@@ -1,96 +1,104 @@
-﻿  <%@ Page Title="" Language="C#" MasterPageFile="~/customer.Master" AutoEventWireup="true" CodeBehind="c_purcahse.aspx.cs" Inherits="StockMangementSystem.WebForm12" %>
+<%@ Page Title="My Orders" Language="C#" MasterPageFile="~/customer.Master" AutoEventWireup="true" CodeBehind="c_purcahse.aspx.cs" Inherits="StockMangementSystem.WebForm12" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-            height: 343px;
+    <style>
+        .orders-card {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background: #fff;
         }
-        .auto-style2 {
-            width: 684px;
-            text-align: center;
+        .stat-badge {
+            border-radius: 10px;
+            border-left: 4px solid #0ea5e9;
         }
-        .auto-style3 {
-            width: 684px;
-            height: 26px;
-            text-align: center;
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #64748b;
+            display: block;
         }
-        .auto-style4 {
-            height: 26px;
-            text-align: center;
-        }
-        .auto-style5 {
-            text-align: center;
-        }
-        .auto-style6 {
-            width: 684px;
-            height: 28px;
-            text-align: center;
-        }
-        .auto-style7 {
-            height: 28px;
-            text-align: center;
-        }
-        .auto-style8 {
-            width: 684px;
-            text-align: center;
-            height: 24px;
-        }
-        .auto-style9 {
-            text-align: center;
-            height: 24px;
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            display: block;
         }
     </style>
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="auto-style1">
-        <tr>
-            <td class="auto-style2">Supplier ID</td>
-            <td class="auto-style5">
-                <asp:Label ID="Label1" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style8">Item Name</td>
-            <td class="auto-style9">
-                <asp:Label ID="Label2" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style2">Quantity </td>
-            <td class="auto-style5">
-                <asp:Label ID="Label3" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style6">Price</td>
-            <td class="auto-style7">
-                <asp:Label ID="Label4" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-           
-            <td class="auto-style3">Date of Purchase</td>
-            <td class="auto-style4">
-                <asp:Label ID="Label6" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-           
-            <td class="auto-style4" colspan="2">
-                <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                    <AlternatingRowStyle BackColor="White" />
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                </asp:GridView>
-            </td>
-        </tr>
-    </table>
-    </asp:Content>
+    <div class="container-fluid py-4">
+        <!-- Header -->
+        <div class="mb-4">
+            <h3 class="fw-bold mb-0 text-dark">My Purchase Orders</h3>
+            <p class="text-muted small">View your recent purchases and invoice history</p>
+        </div>
+
+        <!-- Latest Order Showcase (If any exist) -->
+        <asp:Panel ID="LatestOrderPanel" runat="server" CssClass="card stat-badge shadow-sm p-4 bg-white border-0 mb-4">
+            <h6 class="fw-bold text-muted mb-3 text-uppercase"><i class="fa-solid fa-star me-2 text-warning"></i>Most Recent Order</h6>
+            <div class="row g-3">
+                <div class="col-sm-3">
+                    <span class="info-label">Customer ID</span>
+                    <span class="info-value"><asp:Label ID="Label1" runat="server"></asp:Label></span>
+                </div>
+                <div class="col-sm-3">
+                    <span class="info-label">Product Name</span>
+                    <span class="info-value"><asp:Label ID="Label2" runat="server"></asp:Label></span>
+                </div>
+                <div class="col-sm-2">
+                    <span class="info-label">Quantity</span>
+                    <span class="info-value"><asp:Label ID="Label3" runat="server"></asp:Label></span>
+                </div>
+                <div class="col-sm-2">
+                    <span class="info-label">Total Cost</span>
+                    <span class="info-value text-success">$<asp:Label ID="Label4" runat="server"></asp:Label></span>
+                </div>
+                <div class="col-sm-2">
+                    <span class="info-label">Order Date</span>
+                    <span class="info-value"><asp:Label ID="Label6" runat="server"></asp:Label></span>
+                </div>
+            </div>
+        </asp:Panel>
+
+        <!-- Orders Table Grid -->
+        <div class="card orders-card">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <h5 class="fw-bold m-0"><i class="fa-solid fa-receipt me-2 text-primary"></i>All Orders Log</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+                        CssClass="table table-hover table-premium align-middle mb-0" GridLines="None"
+                        AllowPaging="True" PageSize="10" OnPageIndexChanging="GridView1_PageIndexChanging">
+                        <Columns>
+                            <asp:BoundField DataField="CustomerId" HeaderText="Account ID" />
+                            <asp:BoundField DataField="ProductName" HeaderText="Item Name" />
+                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                            
+                            <!-- Total Price -->
+                            <asp:TemplateField HeaderText="Total Price ($)">
+                                <ItemTemplate>
+                                    <%# Convert.ToDecimal(Eval("Total")).ToString("N2") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <!-- Date -->
+                            <asp:TemplateField HeaderText="Purchase Date">
+                                <ItemTemplate>
+                                    <%# Convert.ToDateTime(Eval("SaleDate")).ToString("dd-MM-yyyy HH:mm") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <PagerStyle CssClass="pagination-container" />
+                        <EmptyDataTemplate>
+                            <div class="text-center py-4 text-muted">
+                                <i class="fa-solid fa-receipt fs-2 mb-2 d-block"></i>
+                                You have not placed any orders yet.
+                            </div>
+                        </EmptyDataTemplate>
+                    </asp:GridView>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
