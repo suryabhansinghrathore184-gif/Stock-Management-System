@@ -111,6 +111,8 @@
     <Content Include="s_deliveryschedule.aspx" />
     <Content Include="s_performance.aspx" />
     <Content Include="s_documents.aspx" />
+    <Content Include="admin_tickets.aspx" />
+    <Content Include="admin_reviews.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataCon.cs" />
@@ -422,6 +424,20 @@
     </Compile>
     <Compile Include="s_documents.aspx.designer.cs">
       <DependentUpon>s_documents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin_tickets.aspx.cs">
+      <DependentUpon>admin_tickets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin_tickets.aspx.designer.cs">
+      <DependentUpon>admin_tickets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin_reviews.aspx.cs">
+      <DependentUpon>admin_reviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin_reviews.aspx.designer.cs">
+      <DependentUpon>admin_reviews.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

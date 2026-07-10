@@ -270,6 +270,12 @@
                 <li class="sidebar-item">
                     <a href="view.aspx"><i class="fa-solid fa-magnifying-glass"></i><span>Transaction History</span></a>
                 </li>
+                <li class="sidebar-item">
+                    <a href="admin_tickets.aspx"><i class="fa-solid fa-headset"></i><span>Support Tickets</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="admin_reviews.aspx"><i class="fa-solid fa-star-half-stroke"></i><span>Product Reviews</span></a>
+                </li>
                 <li class="sidebar-item mt-4">
                     <a href="logout.aspx" class="text-danger"><i class="fa-solid fa-right-from-bracket text-danger"></i><span>Logout</span></a>
                 </li>

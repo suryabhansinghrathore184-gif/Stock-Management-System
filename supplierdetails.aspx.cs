@@ -25,6 +25,7 @@ namespace StockMangementSystem
                 LoadSupplierStats(id);
                 BindHistoryGrid(id);
                 BindProductsGrid(id);
+                BindDocsGrid(id);
             }
         }
 
@@ -57,6 +58,10 @@ namespace StockMangementSystem
                     LblStatus.Text = row["supplierstatus"].ToString();
                     LblBank.Text = string.IsNullOrEmpty(row["bankdetails"].ToString()) ? "-" : row["bankdetails"].ToString();
 
+                    LblBankName.Text = string.IsNullOrEmpty(row["bank_name"].ToString()) ? "Not Configured" : row["bank_name"].ToString();
+                    LblBankAcc.Text = string.IsNullOrEmpty(row["bank_account"].ToString()) ? "Not Configured" : row["bank_account"].ToString();
+                    LblBankIfsc.Text = string.IsNullOrEmpty(row["bank_ifsc"].ToString()) ? "Not Configured" : row["bank_ifsc"].ToString();
+
                     DateTime created;
                     if (row["createddate"] != DBNull.Value && DateTime.TryParse(row["createddate"].ToString(), out created))
                     {
@@ -85,6 +90,22 @@ namespace StockMangementSystem
             catch (Exception ex)
             {
                 Response.Write("<script>alert('Error loading profile: " + ex.Message + "')</script>");
+            }
+        }
+
+        private void BindDocsGrid(string id)
+        {
+            try
+            {
+                string query = "SELECT DocumentType, FilePath, UploadedDate FROM SupplierDocuments WHERE SupplierId = @Id ORDER BY UploadedDate DESC";
+                SqlParameter[] param = new SqlParameter[] { new SqlParameter("@Id", SqlDbType.VarChar) { Value = id } };
+                DataSet ds = dc.GetDataSet(query, param);
+                GridDocs.DataSource = ds;
+                GridDocs.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error loading documents: " + ex.Message + "')</script>");
             }
         }
 

@@ -160,10 +160,13 @@
                     <div class="card-header bg-white border-0 pt-4 pb-0">
                         <ul class="nav nav-tabs border-bottom-0" id="supplierTabs" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active fw-bold text-uppercase py-2.5" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-list" type="button" role="tab" aria-selected="true">Supply Invoices</button>
+                                <button class="nav-link fw-bold text-uppercase py-2.5" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-list" type="button" role="tab" aria-selected="true">Supply Invoices</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link fw-bold text-uppercase py-2.5" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-list" type="button" role="tab" aria-selected="false">Supplied Products</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link fw-bold text-uppercase py-2.5" id="docs-tab" data-bs-toggle="tab" data-bs-target="#docs-list" type="button" role="tab" aria-selected="false">Verification Docs & Bank</button>
                             </li>
                         </ul>
                     </div>
@@ -212,6 +215,49 @@
                                         <PagerStyle CssClass="pagination-container" />
                                         <EmptyDataTemplate>
                                             <div class="text-center py-4 text-muted">No products registered under this supplier.</div>
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+                                </div>
+                            </div>
+
+                            <!-- Verification Docs & Bank Tab -->
+                            <div class="tab-pane fade" id="docs-list" role="tabpanel" aria-labelledby="docs-tab">
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3">
+                                        <span class="info-label text-muted">Bank Name</span>
+                                        <h6 class="fw-bold"><asp:Label ID="LblBankName" runat="server" Text="Not Configured"></asp:Label></h6>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <span class="info-label text-muted">Account Number</span>
+                                        <h6 class="fw-bold"><asp:Label ID="LblBankAcc" runat="server" Text="Not Configured"></asp:Label></h6>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <span class="info-label text-muted">IFSC Code</span>
+                                        <h6 class="fw-bold"><asp:Label ID="LblBankIfsc" runat="server" Text="Not Configured"></asp:Label></h6>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h6 class="fw-bold text-uppercase text-muted mb-3"><i class="fa-solid fa-folder-open me-2"></i>Uploaded Documents</h6>
+                                <div class="table-responsive">
+                                    <asp:GridView ID="GridDocs" runat="server" AutoGenerateColumns="False"
+                                        CssClass="table table-hover table-premium align-middle mb-0" GridLines="None">
+                                        <Columns>
+                                            <asp:BoundField DataField="DocumentType" HeaderText="Document Type" />
+                                            <asp:TemplateField HeaderText="Upload Date">
+                                                <ItemTemplate>
+                                                    <%# Convert.ToDateTime(Eval("UploadedDate")).ToString("dd-MM-yyyy HH:mm") %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Action">
+                                                <ItemTemplate>
+                                                    <a href='<%# "/Links/" + Eval("FilePath") %>' target="_blank" class="btn btn-xs btn-outline-primary">
+                                                        <i class="fa-solid fa-download me-1"></i>View / Download
+                                                    </a>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            <div class="text-center py-4 text-muted">No business documents uploaded yet.</div>
                                         </EmptyDataTemplate>
                                     </asp:GridView>
                                 </div>

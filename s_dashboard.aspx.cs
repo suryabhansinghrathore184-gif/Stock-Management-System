@@ -98,5 +98,10 @@ namespace StockMangementSystem
                 // Ignore
             }
         }
+
+        protected void GvRecentSupplies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
